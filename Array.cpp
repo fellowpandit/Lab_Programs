@@ -1,4 +1,13 @@
 #include <iostream>
+/*
+Design and implement a C++ Program for the following array
+operations.
+a. Creating an array of N Integer Elements
+b. Display the array Elements with Suitable Headings
+c. Inserting an Element at a given valid Position
+d. Deleting an Element at a given valid Position
+e. Exit.
+*/
 #define N 10
 using namespace std;
 
