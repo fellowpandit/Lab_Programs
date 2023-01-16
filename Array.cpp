@@ -1,4 +1,5 @@
 #include <iostream>
+//!!!This code has many Shortcomings!!!
 /*
 Design and implement a C++ Program for the following array
 operations.
@@ -35,7 +36,7 @@ public:
         int pos;
         cout<<"Enter the position:";
         cin>>pos;
-        if((arr[pos]==0)&&pos<N&&pos>1){
+        if((arr[pos-1]==0)&&pos<N){
             cout<<"Enter the number:";
             cin>>arr[pos-1];
             cout<<"Inserted!"<<endl;
@@ -49,7 +50,7 @@ public:
         int pos;
         cout<<"Enter the position:";
         cin>>pos;
-        if((arr[pos]!=0)&&pos<N&&pos>1){
+        if((arr[pos-1]!=0)&&pos<N){
             arr[pos-1]==0;
             cout<<"Deleted!";
         }
