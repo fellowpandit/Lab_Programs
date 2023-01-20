@@ -37,10 +37,6 @@ string infixToPostfix(string infix) {
             s.push(infix[i]);
         }
     }
-    while (!s.empty()) {
-        postfix += s.top();
-        s.pop();
-    }
     return postfix;
 }
 
