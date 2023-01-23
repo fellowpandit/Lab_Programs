@@ -16,10 +16,11 @@ private:
 	int front=0, rear=-1, que[MAX];
 public:
 	void _insert(){
-		if(rear==MAX)cout<<"Queue Overflow.";
+		if(rear==MAX-1)cout<<"Queue Overflow.";
 		else{
 			cout<<"Enter data:";
-			cin>>que[rear++];
+			rear++;
+			cin>>que[rear];
 		}
 	}
 	
@@ -33,7 +34,7 @@ public:
 	}
 	
 	void Move(){
-		for(int i=front; i<=rear;i++){
+		for(int i=front+1; i<=rear;i++){
 			que[i-1] = que[i];
 		}
 	}
