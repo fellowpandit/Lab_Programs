@@ -54,7 +54,7 @@ int main() {
     int op;
     bool chk = true;
     Queue Q;
-    cout<<"\nArray Created!\n\n1.Display\n2.Insert\n3.Delete\n4.Exit"<<endl;
+    cout<<"\nQueue Created!\n\n1.Display\n2.Insert\n3.Delete\n4.Exit"<<endl;
     while(chk){
         cout<<"\nEnter your choice: ";
         cin>>op;
