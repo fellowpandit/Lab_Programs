@@ -13,23 +13,21 @@ using namespace std;
 
 class Queue{
 private:
-	int front=0, rear=0, que[MAX];
+	int front=0, rear=-1, que[MAX];
 public:
 	void _insert(){
-		if(rear==MAX-1)cout<<"Queue Overflow.";
+		if(rear==MAX)cout<<"Queue Overflow.";
 		else{
 			cout<<"Enter data:";
-			cin>>que[rear];
-			rear++;
+			cin>>que[rear++];
 		}
 	}
 	
 	void _delete(){
 		if(rear<front)cout<<"Queue Underflow.";
 		else{
-			cout<<que[front]<<endl;
-			front++;
-			Move();
+			cout<<que[front]<<"-> Deleted!"<<endl;
+			Move();			//Moves front end of the queue to 0
 			rear--;
 		}
 	}
@@ -43,20 +41,38 @@ public:
 	void _display(){
 		if(rear<front)cout<<"Queue is empty.";
 		else{
-			for(int i=front; i<rear; i++){
+			for(int i=front; i<=rear; i++){
 				cout<<i+1<<"\t"<<que[i]<<endl;
 			}
 		}
 	}
 };
 
-int main(){
-	Queue q;
-	while(true){
-		
-	}
-	q._insert();
-	q._delete();
-	q._display();
-	return 0;
+
+int main() {
+    int op;
+    bool chk = true;
+    Queue Q;
+    cout<<"\nArray Created!\n\n1.Display\n2.Insert\n3.Delete\n4.Exit"<<endl;
+    while(chk){
+        cout<<"\nEnter your choice: ";
+        cin>>op;
+        switch (op) {
+            case 1:
+                Q._display();
+                break;
+            case 2:
+                Q._insert();
+                break;
+            case 3:
+                Q._delete();
+                break;
+            case 4:
+                chk = false;
+                break;
+            default:
+                cout<<"Invalid Choice"<<endl;
+        }
+    }
+    return 0;
 }
