@@ -1,83 +1,71 @@
-#include <iostream>
-//!!!This code has many Shortcomings!!!
 /*
-Design and implement a C++ Program for the following array
-operations.
-a. Creating an array of N Integer Elements
-b. Display the array Elements with Suitable Headings
-c. Inserting an Element at a given valid Position
-d. Deleting an Element at a given valid Position
-e. Exit.
+ Design a C++ Program to perform the following operations on Linear Queue of Inegers
+ (Array Implementation of Queue with maximum size MAX)
+ a. Insert an Element to a Linear Queue.
+ b. Delete an Element from the Linear Queue.
+ c. Demonstrate Overflow and Underflow situtations on LInear Queue.
+ d. Display the status of LInear Queue.
 */
-#define N 10
+
+#include<bits/stdc++.h>
+#define MAX 10
 using namespace std;
 
-class Array{
+class Queue{
 private:
-    int arr[N]={0},n=0;
+	int front=0, rear=-1, que[MAX];
 public:
-    void _display(){
-        int count=0,i=0;
-        cout<<"Array elements are:"<<endl;
-        for(i;i<N;i++){
-            if((arr[i]!=0)) {
-                cout<<i+1<<".\t"<<arr[i]<<endl;
-            }
-            else{
-                count++;
-            }
-            if(count==10){
-                cout<<"Array is empty!"<<endl;
-            }
-        }
-    }
-
-    void _insert(){
-        int pos;
-        cout<<"Enter the position:";
-        cin>>pos;
-        if((arr[pos-1]==0)&&pos<N){
-            cout<<"Enter the number:";
-            cin>>arr[pos-1];
-            cout<<"Inserted!"<<endl;
-        }
-        else{
-            cout<<"Invalid";
-        }
-    }
-
-    void _delete(){
-        int pos;
-        cout<<"Enter the position:";
-        cin>>pos;
-        if((arr[pos-1]!=0)&&pos<N){
-            arr[pos-1]==0;
-            cout<<"Deleted!";
-        }
-        else{
-            cout<<"Invalid";
-        }
-    }
-
+	void _insert(){
+		if(rear==MAX)cout<<"Queue Overflow.";
+		else{
+			cout<<"Enter data:";
+			cin>>que[rear++];
+		}
+	}
+	
+	void _delete(){
+		if(rear<front)cout<<"Queue Underflow.";
+		else{
+			cout<<que[front]<<"-> Deleted!"<<endl;
+			Move();			//Moves front end of the queue to 0
+			rear--;
+		}
+	}
+	
+	void Move(){
+		for(int i=front; i<=rear;i++){
+			que[i-1] = que[i];
+		}
+	}
+	
+	void _display(){
+		if(rear<front)cout<<"Queue is empty.";
+		else{
+			for(int i=front; i<=rear; i++){
+				cout<<i+1<<"\t"<<que[i]<<endl;
+			}
+		}
+	}
 };
+
 
 int main() {
     int op;
     bool chk = true;
-    Array Arr;
+    Queue Q;
     cout<<"\nArray Created!\n\n1.Display\n2.Insert\n3.Delete\n4.Exit"<<endl;
     while(chk){
         cout<<"\nEnter your choice: ";
         cin>>op;
         switch (op) {
             case 1:
-                Arr._display();
+                Q._display();
                 break;
             case 2:
-                Arr._insert();
+                Q._insert();
                 break;
             case 3:
-                Arr._delete();
+                Q._delete();
                 break;
             case 4:
                 chk = false;
