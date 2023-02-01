@@ -30,20 +30,21 @@ public:
             }
         }
     }
-    void _insert(){
+    
+    void _insert() {
         int pos;
-        cout<<"Enter the position:";
-        cin>>pos;
-        if((arr[pos]==0)&&pos<N&&pos>1){
-        if((arr[pos-1]==0)&&pos<N){
-            cout<<"Enter the number:";
-            cin>>arr[pos-1];
-            cout<<"Inserted!"<<endl;
-        }
-        else{
-            cout<<"Invalid";
+        cout << "Enter the position:";
+        cin >> pos;
+        pos--;
+        if ((arr[pos] == 0) && pos < N && pos >= 0) {
+            cout << "Enter the number:";
+            cin >> arr[pos];
+            cout << "Inserted!" << endl;
+        } else {
+            cout << "Invalid";
         }
     }
+    
     void _delete(){
         int pos;
         cout<<"Enter the position:";
@@ -58,6 +59,7 @@ public:
         }
     }
 };
+    
 int main() {
     int op;
     bool chk = true;
