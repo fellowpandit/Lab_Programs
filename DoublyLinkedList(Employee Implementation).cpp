@@ -8,28 +8,36 @@ using namespace std;
  Basically Singly nodes inbuilt which can traverse from both sides.
  *****"Tail" can also be regarded as "First"*****
  */
- 
-class EmployeeData{
+
+class Employee{
 public:
-	string SSN="", Name="", Dept="", Designation="";
-	int Salary = 0;
-	
-	EmployeeData(string SSN,string Name,string Dept, string Designation,int Salary){
-		this->SSN = SSN;
-		this->Name = Name;
-		this->Dept = Dept;
-		this->Designation = Designation;
-		this->Salary = Salary;
-	}
+    string SSN="", Name="", Dept="", Designation="";
+    int Salary = 0;
+
+    Employee(string SSN,string Name,string Dept, string Designation,int Salary){
+        this->SSN = SSN;
+        this->Name = Name;
+        this->Dept = Dept;
+        this->Designation = Designation;
+        this->Salary = Salary;
+    }
+
+    void printData(){
+        cout<<"SSN\t:"<<SSN;
+        cout<<"Name\t:"<<Name;
+        cout<<"Department\t:"<<Dept;
+        cout<<"Designation\t:"<<Designation;
+        cout<<"Salary\t:"<<Salary;
+    }
 };
 
 class Node{
 public:
     Node* prev;
     Node* next;
-    EmployeeData* data;
+    Employee* data;
 
-    Node(EmployeeData* data){
+    Node(Employee* data){
         this->prev = nullptr;
         this->next = nullptr;
         this->data = data;
@@ -40,14 +48,14 @@ class DoublyLinkedList{
 private:
     Node* head;
 public:
-    void insertAtHead(EmployeeData* data){
+    void insertAtHead(Employee* data){
         Node* newNode = new Node(data);
         newNode->next = head;
         if(head!=NULL) head->prev = newNode;
         head = newNode;
     }
 
-    void insertAtFirst(EmployeeData* data){
+    void insertAtFirst(Employee* data){
         Node* newNode = new Node(data);
         Node* tail = head;
         while(tail->next){
@@ -61,7 +69,7 @@ public:
         }
     }
 
-    void insertAtPos(EmployeeData* data, int Pos){
+    void insertAtPos(Employee* data, int Pos){
         Node* newNode = new Node(data);     //The new Node
         Node* temp = head;                  //Node1 in front of which new Node to be added
 
@@ -130,8 +138,9 @@ public:
 
     void printFromHead(){
         Node* temp = head;
-        while(temp){
-            cout<<temp->data<<"\t->";
+        while(temp!= nullptr){
+            temp->data->printData();
+            cout<<endl<<endl;
             temp = temp->next;
         }
         cout<<"NULL"<<endl;
@@ -144,81 +153,65 @@ public:
         }
         cout<<"NULL";
         while(tail){
-            cout<<"\t->"<<tail->data;
+            tail->data->printData();
+            cout<<endl<<endl;
             tail = tail->prev;
         }
         cout<<endl;
     }
 };
 
+Employee* inputData() {
+    Employee* data = new Employee("", "", "", "", 0);
+    cout << "Enter Data For the Employee:\n";
+    cout << "Enter SSN:";
+    cin >> data->SSN;
+    cout << "Enter Name:";
+    cin >> data->Name;
+    cout << "Enter Department:";
+    cin >> data->Dept;
+    cout << "Enter Designation:";
+    cin >> data->Designation;
+    cout << "Enter Salary:";
+    cin >> data->Salary;
+    return data;
+}
+
+
 int main() {
     DoublyLinkedList list;
 
     int op = 1;
     cout<<"\n****MENU****\n\n"<<
-    "1.Insert at Head\n"<<
-    "2.Insert at First\n"<<
-    "3.Insert at Position\n"<<
-    "4.Delete at Head\n"<<
-    "5.Delete at First\n"<<
-    "6.Delete at Position\n"<<
-    "7.Display from Head\n"<<
-    "8.Display from First\n"<<
-    "0.Exit\n"<<endl;
+        "1.Insert at Head\n"<<
+        "2.Insert at First\n"<<
+        "3.Insert at Position\n"<<
+        "4.Delete at Head\n"<<
+        "5.Delete at First\n"<<
+        "6.Delete at Position\n"<<
+        "7.Display from Head\n"<<
+        "8.Display from First\n"<<
+        "0.Exit\n"<<endl;
 
     while(op){
         cout<<"Enter Option: ";
         cin>>op;
-        EmployeeData* data;
+
         int pos;
         switch(op){
             case 0:
                 break;
             case 1:
-                cout<<"Enter Data For the Employee:\n";
-                cout<<"Enter SSN:";
-                cin>>data->SSN;
-                cout<<"Enter Name:";
-                cin>>data->Name;
-                cout<<"Enter Department:";
-                cin>>data->Dept;
-                cout<<"Enter Designation:";
-                cin>>data->Designation;
-                cout<<"Enter Salary:";
-                cin>>data->Salary;
-                list.insertAtHead(data);
+                list.insertAtHead(inputData());
                 break;
             case 2:
-                cout<<"Enter Data For the Employee:\n";
-                cout<<"Enter SSN:";
-                cin>>data->SSN;
-                cout<<"Enter Name:";
-                cin>>data->Name;
-                cout<<"Enter Department:";
-                cin>>data->Dept;
-                cout<<"Enter Designation:";
-                cin>>data->Designation;
-                cout<<"Enter Salary:";
-                cin>>data->Salary;
-                list.insertAtFirst(data);
+                list.insertAtFirst(inputData());
                 break;
             case 3:
-                cout<<"Enter Data For the Employee:\n";
-                cout<<"Enter SSN:";
-                cin>>data->SSN;
-                cout<<"Enter Name:";
-                cin>>data->Name;
-                cout<<"Enter Department:";
-                cin>>data->Dept;
-                cout<<"Enter Designation:";
-                cin>>data->Designation;
-                cout<<"Enter Salary:";
-                cin>>data->Salary;
-                
                 cout<<"\nEnter Position[0-n]: ";
                 cin>>pos;
-                
-                list.insertAtPos(data,pos);
+
+                list.insertAtPos(inputData(),pos);
                 break;
             case 4:
                 list.deleteAtHead();
