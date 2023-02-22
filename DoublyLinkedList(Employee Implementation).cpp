@@ -3,10 +3,14 @@
 using namespace std;
 
 /*
- This Program works on the concept that, Doubly Linked list is two Singly Linked list with a single node.
- There is a single node with two fronts named as "head" and "tail".
- Basically Singly nodes inbuilt which can traverse from both sides.
- *****"Tail" can also be regarded as "First"*****
+Design a menu-driven Program in C++ for the following operations on
+Doubly Linked List (DLL) of Employee Data with the fields: SSN, Name,
+Dept, Designation and salary. Perform the following operations.
+a. Create a double linked list of employees data.
+b. Insert a new employee to the left of the node whose key value
+(employee name) is read as an input.
+c. Delete a node with given data, if it is found. Otherwise, display
+appropriate error message
  */
 
 class Employee{
@@ -23,11 +27,11 @@ public:
     }
 
     void printData(){
-        cout<<"SSN\t:"<<SSN;
-        cout<<"Name\t:"<<Name;
-        cout<<"Department\t:"<<Dept;
-        cout<<"Designation\t:"<<Designation;
-        cout<<"Salary\t:"<<Salary;
+        cout<<"SSN\t:"<<SSN<<"\t";
+        cout<<"Name\t:"<<Name<<"\t";
+        cout<<"Department\t:"<<Dept<<"\t";
+        cout<<"Designation\t:"<<Designation<<"\t";
+        cout<<"Salary\t:"<<Salary<<"\t";
     }
 };
 
@@ -46,7 +50,7 @@ public:
 
 class DoublyLinkedList{
 private:
-    Node* head;
+    Node* head = nullptr;
 public:
     void insertAtHead(Employee* data){
         Node* newNode = new Node(data);
@@ -137,6 +141,7 @@ public:
     }
 
     void printFromHead(){
+        cout<<"Working";
         Node* temp = head;
         while(temp!= nullptr){
             temp->data->printData();
@@ -176,7 +181,6 @@ Employee* inputData() {
     cin >> data->Salary;
     return data;
 }
-
 
 int main() {
     DoublyLinkedList list;
